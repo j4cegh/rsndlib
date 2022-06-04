@@ -1,9 +1,11 @@
-const WS = require("ws")
+import { WebSocket } from "ws"
 
 class Database {
+    ws: WebSocket;
+    queue = [];
+
     constructor(url) {
-        this.ws = new WS(url);
-        this.queue = []
+        this.ws = new WebSocket(url);
 
         this.ws.on("message", data => {
           if (this.queue.length === 0) return
@@ -14,7 +16,7 @@ class Database {
     connect() {
         return new Promise((resolve) => {
             this.ws.on("open", () => {
-                resolve();
+                resolve(null);
             });
         })
     }
@@ -34,14 +36,14 @@ class Database {
     }
     set(tableName, key, value) {
         return new Promise((resolve) => {
+
             this.ws.send(JSON.stringify({
                 Type: "SetValue",
                 TableName: tableName,
                 Key: key,
                 Value: value
             }));
-
-            resolve();
+            resolve(null);
         });
     }
     add(tableName, key, value) {
@@ -57,7 +59,7 @@ class Database {
                 ]
             }));
 
-            resolve();
+            resolve(null);
         });
     }
 }

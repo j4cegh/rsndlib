@@ -2,10 +2,10 @@
   "name": "@rosenishere/rsndlib",
   "version": "1.0.4",
   "description": "The promise-based NodeJS library for my database, RSND!",
-  "main": "src/index.js",
-  "types": "types/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node test.js"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "j4ce",
@@ -13,7 +13,9 @@
   "dependencies": {
     "ws": "^8.7.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/ws": "^8.5.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/j4cegh/rsndlib.git"
