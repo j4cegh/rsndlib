@@ -1,12 +1,12 @@
-import { WebSocket } from "ws"
+import { RawData, WebSocket } from "ws"
 
-class Database {
+export class Database {
     ws: WebSocket;
-    queue = [];
+    queue: ((str: RawData) => void)[] = [];
 
-    constructor(url) {
+    constructor(url: string) {
         this.ws = new WebSocket(url);
-
+        
         this.ws.on("message", data => {
           if (this.queue.length === 0) return
           this.queue.shift()(data)
@@ -21,7 +21,7 @@ class Database {
         })
     }
 
-    get(tableName, select, key, value) {
+    get(tableName: string, select: string, key: string, value: string) {
         return new Promise((resolve) => {
             this.queue = [...this.queue, resolve];
 
@@ -34,7 +34,7 @@ class Database {
             }));
         });
     }
-    set(tableName, key, value) {
+    set(tableName: string, key: string, value: string) {
         return new Promise((resolve) => {
 
             this.ws.send(JSON.stringify({
@@ -46,7 +46,7 @@ class Database {
             resolve(null);
         });
     }
-    add(tableName, key, value) {
+    add(tableName: string, key: string, value: string) {
         return new Promise((resolve) => {
             this.ws.send(JSON.stringify({
                 Type: "AddToTable",
@@ -63,4 +63,3 @@ class Database {
         });
     }
 }
-module.exports = Database;

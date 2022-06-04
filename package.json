@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "The promise-based NodeJS library for my database, RSND!",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
