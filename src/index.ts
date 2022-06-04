@@ -34,14 +34,15 @@ export class Database {
             }));
         });
     }
-    set(tableName: string, key: string, value: string) {
+    set(tableName: string, key: string, value: string, newValue: string) {
         return new Promise((resolve) => {
 
             this.ws.send(JSON.stringify({
                 Type: "SetValue",
                 TableName: tableName,
                 Key: key,
-                Value: value
+                Value: value,
+                NewValue: newValue
             }));
             resolve(null);
         });
