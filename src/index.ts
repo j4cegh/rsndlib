@@ -75,4 +75,15 @@ export class Database {
             resolve(null);
         });
     }
+
+    createTable(tableName: string) {
+        return new Promise((resolve) => {
+            this.ws.send(JSON.stringify({
+                Type: "CreateTable",
+                TableName: tableName,
+                Rows: []
+            }));
+            resolve(null);
+        });
+    }
 }
