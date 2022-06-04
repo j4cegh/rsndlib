@@ -2,7 +2,7 @@ import { RawData, WebSocket } from "ws"
 
 export class Database {
     ws: WebSocket;
-    queue: ((str: RawData) => void)[] = [];
+    queue: ((data: RawData) => void)[] = [];
 
     constructor(url: string) {
         this.ws = new WebSocket(url);
