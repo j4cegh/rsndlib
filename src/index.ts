@@ -62,4 +62,17 @@ export class Database {
             resolve(null);
         });
     }
+    addRow(tableName: string, columns: { [key: string]: string }) {
+        return new Promise((resolve) => {
+            this.ws.send(JSON.stringify({
+                Type: "AddToTable",
+                TableName: tableName,
+                Columns: Object.keys(columns).map(key => ({
+                    Name: key,
+                    Value: columns[key]
+                }))
+            }));
+            resolve(null);
+        });
+    }
 }
