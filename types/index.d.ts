@@ -1,4 +1,4 @@
-export = Database;
+export {Database};
 declare class Database {
     constructor(url: any);
     ws: any;

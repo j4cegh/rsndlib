@@ -1,8 +1,8 @@
 {
   "name": "@rosenishere/rsndlib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The promise-based NodeJS library for my database, RSND!",
-  "main": "index.js",
+  "main": "src/index.js",
   "types": "types/index.d.ts",
   "scripts": {
     "start": "node test.js"
